@@ -1,4 +1,4 @@
-## Gestió Sanitària
+## Gestió Sanitària ACC
 
 
 ![vista Presentacio](img/captura_0001.png)
