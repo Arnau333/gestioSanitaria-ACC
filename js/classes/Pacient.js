@@ -1,9 +1,9 @@
 'use strict'
 
-class Pacient {
-  constructor(nom, malaltia) {
-    nom = nom;
-    malaltia = malaltia;
+class Pacient extends Persona {
+  cconstructor(nomRebut, cognomRebut, nifRebut, malaltiaRebuda) {
+    super	(nomRebut, cognomRebut, nifRebut);
+    this.malaltia = malaltiaRebuda;
   }
 }
 

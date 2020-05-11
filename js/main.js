@@ -230,3 +230,6 @@ function ocultaGestioPacients(objecteRebut){
       mostraBotons();
    }
    
+   function crearHospital() {
+         alert('aaa');
+   } 
