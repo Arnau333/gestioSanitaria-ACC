@@ -230,6 +230,8 @@ function ocultaGestioPacients(objecteRebut){
       mostraBotons();
    }
    
-   function crearHospital() {
-         alert('aaa');
+   function crearHospital() {// s'ha ha de crar l'hospital....
+      // alert('aaa');
+      ocultaGestioHospital();
+      mostraGestioPacients();
    } 
