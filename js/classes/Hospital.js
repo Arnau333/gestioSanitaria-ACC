@@ -1,13 +1,11 @@
 'use strict'
 
 class Hospital {
-  constructor(nom, maximPacients, maximMetges) {
-    nomHospital = nom;
-    maximPacients = maximPacients;
-    pacientsIngressats = [];
-    ingressarPacient = ingressarPacient;
-    donarDaltaPacient = donarDaltaPacient;
-    morirPacient = morirPacient;
+  constructor(nomHospital, maximPacients, maximMetges) {
+    this.nomHospital = nomHospital;
+    this.maximPacients = maximPacients;
+    this.pacientsIngressats = [];
+ 
   }
   
     ingressarPacient(pacient) {

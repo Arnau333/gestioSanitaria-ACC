@@ -232,6 +232,17 @@ function ocultaGestioPacients(objecteRebut){
    
    function crearHospital() {// s'ha ha de crar l'hospital....
       // alert('aaa');
+var nom = document.getElementById("inputNomHospital").value.toString();
+var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
+   console.log(nom);
+   console.log(maximPacients);
+
+   
+  if (nom !== "" && maximPacients > 0) {
+      
+      var hospital = new Hospital(nom, maximPacients);
+
       ocultaGestioHospital();
       mostraGestioPacients();
+  }
    } 
