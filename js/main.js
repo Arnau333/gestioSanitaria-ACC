@@ -1,7 +1,7 @@
 'use strict'
 
 var hospital;
-var Pacientsingressats;
+var Pacientsingressats = [];
 
 function validaQueNoEsBuit(cadenaAValidar) {
       if (cadenaAValidar.value=="" || cadenaAValidar.value=='undefined') {
@@ -66,9 +66,9 @@ function comprovaCampBuit(objecteRebut) {
 
 }
 
-// function comprovaCampNumero(objecteRebut) {
-//       
-// }
+function comprovaCampNumero(objecteRebut) {
+      
+}
 
 
 function mostraMissatge(codiMissatge) {//peta...
@@ -285,17 +285,19 @@ function crearHospital() {// s'ha ha de crar l'hospital....
             ocultaGestioHospital();
             mostraGestioPacients(maximPacients);
 
+         
+            
        
       }
 } 
 
 function ingressarPacients() {
+      var dadesPacientArray = [];
       var buit = false;
       var formularu = ["nomPacient", "Cognompacient", "NIF", "malaltia"];
       for (let camp = 0; camp < formularu.length; camp++) {
             
             var index = 0;
-            var dadesPacientArray = [];
             while(document.getElementById(formularu[camp]+(index))){
                   if(document.getElementById(formularu[camp]+(index)).value==""){  
                         buit=true;
@@ -322,13 +324,40 @@ function ingressarPacients() {
 }
 
 function crearPacients(PacientsPendentsDIngressar) {
+
       var index=0;
+
+
 
       while(PacientsPendentsDIngressar["nomPacient"+(index)]){
             
-            Pacientsingressats[indexç] = new Pacient(PacientsPendentsDIngressar["nomPacient"+(index)], PacientsPendentsDIngressar["Cognompacient"+(index)], llistaMalalties[PacientsPendentsDIngressar["malaltia"+(index)]]);
+            Pacientsingressats[index] = new Pacient(PacientsPendentsDIngressar["nomPacient"+(index)], PacientsPendentsDIngressar["Cognompacient"+(index)], PacientsPendentsDIngressar["NIF"+(index)], llistaMalalties[PacientsPendentsDIngressar["malaltia"+(index)]]);
 
+            // console.log('->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+            
+            // console.log("nom obj: "+PacientsPendentsDIngressar["nomPacient"+(index)]);
+            // console.log("Cognompacient obj: "+PacientsPendentsDIngressar["Cognompacient"+(index)]);
+            // console.log("NIF obj: "+PacientsPendentsDIngressar["NIF"+(index)]);
+            // console.log("malaltia obj: "+llistaMalalties[PacientsPendentsDIngressar["malaltia"+(index)]]);
+            
+
+            hospital.ingressarPacient(Pacientsingressats[index]);
+
+            
+            
+            
             index++;
       }
+
+      // var test = new Pacient('nomRebut', 'cognomRebut', 'nifRebut', 'malaltiaRebuda');
+      // console.log('testOBJ');
+      
+      // console.log(Pacientsingressats[0].nom);      
+      // console.log(Pacientsingressats[0].cognom);
+      // console.log(Pacientsingressats[0].nif)   ;    
+      // console.log(Pacientsingressats[0].malaltia);
+
+      hospital.MostrarIngressats();
+      
       
 }
