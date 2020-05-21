@@ -42,13 +42,16 @@ class Hospital {
 
    
       document.getElementById("divPacient").innerHTML = 
-    '<table class="table table-borderless">'+
-    '<thead>'+
+    '<table class="table">'+
+    '<thead class="thead-dark">'+
     '  <tr>'+
     '    <th scope="col">Nom</th>'+
     '    <th scope="col">Cognom</th>'+
     '    <th scope="col">NIF</th>'+
     '    <th scope="col">Malaltia</th>'+
+    '    <th scope="col">-</th>'+
+    '    <th scope="col">-</th>'+
+
     '  </tr>'+
     '</thead>'+
     '<tbody>'+Continguttaula+'</tbody>'+

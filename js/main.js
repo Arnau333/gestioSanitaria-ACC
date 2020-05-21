@@ -317,9 +317,10 @@ function ingressarPacients() {
 
       }
       
-      crearPacients(dadesPacientArray);
 
-      if(!buit){alert("Pacients ingressats correctament!");}       
+      if(!buit){alert("Pacients ingressats correctament!");
+      crearPacients(dadesPacientArray);
+      }       
 
 }
 
