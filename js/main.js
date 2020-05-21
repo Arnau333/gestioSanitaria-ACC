@@ -1,6 +1,7 @@
 'use strict'
 
-
+var hospital;
+var Pacientsingressats;
 
 function validaQueNoEsBuit(cadenaAValidar) {
       if (cadenaAValidar.value=="" || cadenaAValidar.value=='undefined') {
@@ -62,36 +63,28 @@ taula_missatges[2][intMissatge]="Cal que entris un nom al camp Hospital!";
 //     alert(JSON.stringify(metge));
 
 function comprovaCampBuit(objecteRebut) {
-      if (objecteRebut.value == "") {
-            mostraMissatge(2);
-      }
-      console.log(objecteRebut.value);
+
 }
 
-function comprovaCampNumero(objecteRebut) {
-      switch ( isNaN(objecteRebut.value) ? 1 : objecteRebut.value=="" ? 2 : 0 ) {
-            case 1:
-                  mostraMissatge(1);
-                  break;
-
-            case 2:
-                  mostraMissatge(2);
-                  break;
-
-      }
-      // if (isNaN(objecteRebut.value) || (objecteRebut.value=="")) 
-      //   {
-      //     alert("Must input numbers");
-      //     return false;
-      //   }
-}
+// function comprovaCampNumero(objecteRebut) {
+//       
+// }
 
 
-function mostraMissatge(codiMissatge) {
+function mostraMissatge(codiMissatge) {//peta...
       /* Amb format JQuery   */
       // $('#divEspaiModal').find('#titolModal').text(taula_missatges[codiMissatge][intTitol]);
       // $('#divEspaiModal').find('#missatgeModal').text(taula_missatges[codiMissatge][intMissatge]);
       // $('#divEspaiModal').modal('show');
+}
+
+function msgError(msg) {
+      document.getElementById("errors").innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'+
+      '<strong>Error!</strong>&nbsp;'+msg+
+      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+      '<span aria-hidden="true">&times;</span>'+
+      '</button>'+
+      '</div>';
 }
 
 function mostraBotons() {
@@ -287,7 +280,7 @@ function crearHospital() {// s'ha ha de crar l'hospital....
    
       if (nom !== "" && maximPacients > 0) {
             
-            var hospital = new Hospital(nom, maximPacients);
+            hospital = new Hospital(nom, maximPacients);
 
             ocultaGestioHospital();
             mostraGestioPacients(maximPacients);
@@ -297,22 +290,45 @@ function crearHospital() {// s'ha ha de crar l'hospital....
 } 
 
 function ingressarPacients() {
-
-      var formularu = ["nomPacient", "Cognompacient", "NIF"];
+      var buit = false;
+      var formularu = ["nomPacient", "Cognompacient", "NIF", "malaltia"];
       for (let camp = 0; camp < formularu.length; camp++) {
             
             var index = 0;
             var dadesPacientArray = [];
             while(document.getElementById(formularu[camp]+(index))){
-                  dadesPacientArray[formularu[camp]+(index)]=document.getElementById(formularu[camp]+(index)).value;
-                  document.getElementById(formularu[camp]+(index)).value="";
-                  //comprovacions
-                  console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index++)]);
+                  if(document.getElementById(formularu[camp]+(index)).value==""){  
+                        buit=true;
+                        msgError("No pots deixar camps en banc!");
+                        break;                       
+                  }else{
+                        dadesPacientArray[formularu[camp]+(index)]=document.getElementById(formularu[camp]+(index)).value;
+                        document.getElementById(formularu[camp]+(index)).value="";
+                        //comprovacions
+                        console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index++)]);
+                        
+
+
+                  }
+            
             }
 
       }
-
-      alert("Pacients ingressats correctament!");
       
+      crearPacients(dadesPacientArray);
 
+      if(!buit){alert("Pacients ingressats correctament!");}       
+
+}
+
+function crearPacients(PacientsPendentsDIngressar) {
+      var index=0;
+
+      while(PacientsPendentsDIngressar["nomPacient"+(index)]){
+            
+            Pacientsingressats[indexç] = new Pacient(PacientsPendentsDIngressar["nomPacient"+(index)], PacientsPendentsDIngressar["Cognompacient"+(index)], llistaMalalties[PacientsPendentsDIngressar["malaltia"+(index)]]);
+
+            index++;
+      }
+      
 }
