@@ -291,16 +291,19 @@ function ingressarPacients() {
 
       var formularu = ["nomPacient", "Cognompacient", "NIF"];
       for (let camp = 0; camp < formularu.length; camp++) {
-            //Nom
+            
             var index = 0;
             var dadesPacientArray = [];
             while(document.getElementById(formularu[camp]+(index))){
                   dadesPacientArray[formularu[camp]+(index)]=document.getElementById(formularu[camp]+(index)).value;
+                  document.getElementById(formularu[camp]+(index)).value="";
                   //comprovacions
                   console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index++)]);
             }
 
       }
+
+      alert("Pacients ingressats correctament!");
       
 
 }
