@@ -22,7 +22,7 @@ class Hospital {
     }
 
     morirPacient(llitPacient) {
-      alert("Encara que s'ha fet tot el que s'ha pogut, el pacient " + this.pacientsIngressats[llitPacient].nomHospital + " ha mort de la malaltia " + this.pacientsIngressats[llitPacient].malaltia);
+      alert("Encara que s'ha fet tot el que s'ha pogut, el pacient " + this.pacientsIngressats[llitPacient].nom + " ha mort de la malaltia " + this.pacientsIngressats[llitPacient].malaltia);
       this.pacientsIngressats[llitPacient] = {};
 
       document.getElementById(llitPacient).style.display = "none";
