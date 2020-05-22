@@ -1,5 +1,8 @@
 'use strict'
 
+var hospital;
+var Pacientsingressats = [];
+
 function validaQueNoEsBuit(cadenaAValidar) {
       if (cadenaAValidar.value=="" || cadenaAValidar.value=='undefined') {
         mostraMissatge(`El camp <b>${cadenaAValidar.name}</b> no pot quedar-se en blanc!`);
@@ -60,36 +63,28 @@ taula_missatges[2][intMissatge]="Cal que entris un nom al camp Hospital!";
 //     alert(JSON.stringify(metge));
 
 function comprovaCampBuit(objecteRebut) {
-      if (objecteRebut.value == "") {
-            mostraMissatge(2);
-      }
-      console.log(objecteRebut.value);
+
 }
 
 function comprovaCampNumero(objecteRebut) {
-      switch ( isNaN(objecteRebut.value) ? 1 : objecteRebut.value=="" ? 2 : 0 ) {
-            case 1:
-                  mostraMissatge(1);
-                  break;
-
-            case 2:
-                  mostraMissatge(2);
-                  break;
-
-      }
-      // if (isNaN(objecteRebut.value) || (objecteRebut.value=="")) 
-      //   {
-      //     alert("Must input numbers");
-      //     return false;
-      //   }
+      
 }
 
 
-function mostraMissatge(codiMissatge) {
+function mostraMissatge(codiMissatge) {//peta...
       /* Amb format JQuery   */
       // $('#divEspaiModal').find('#titolModal').text(taula_missatges[codiMissatge][intTitol]);
       // $('#divEspaiModal').find('#missatgeModal').text(taula_missatges[codiMissatge][intMissatge]);
       // $('#divEspaiModal').modal('show');
+}
+
+function msgError(msg) {
+      document.getElementById("errors").innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'+
+      '<strong>Error!</strong>&nbsp;'+msg+
+      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+      '<span aria-hidden="true">&times;</span>'+
+      '</button>'+
+      '</div>';
 }
 
 function mostraBotons() {
@@ -214,6 +209,13 @@ function mostraGestioPacients(num){
       eleID_divPresentacio.classList.toggle("d-none");
       eleID_divPacient.classList.toggle("d-none");
       amagaBotons();
+
+                  var deplegable='<option value="capMalaltia">- Escull un malaltia -</option>';
+                  for (let index = 0; index < llistaMalalties.length; index++) {
+                  deplegable += '<option value="'+(index)+'">'+(llistaMalalties[index])+'</option>';
+                  
+                  }
+
       var pacientsHTML="";
 
       for (let index = 0; index < num; index++) {
@@ -239,7 +241,7 @@ function mostraGestioPacients(num){
                     '<label for="nomMalaltiaPacient'+(index)+'" class="font-weight-bold">'+
                         'Malaltia de pacient:'+
                     '</label>'+
-                    '<input type="text" title="Entra el nom del pacient!" name="Malaltia pacient:" onblur="validaQueNoEsBuit(this)" placeholder="Malaltia pacient" id="nomPacient'+(index)+'" class="form-control" required="">'+
+                    '<select id="malaltia'+(index)+'" class="form-control" required="">'+deplegable+'</select>'+
             
             '</div>'+
             '</div>';
@@ -270,40 +272,103 @@ function ocultaGestioPacients(objecteRebut){
    
 function crearHospital() {// s'ha ha de crar l'hospital....
       // alert('aaa');
-      var nom = document.getElementById("inputNomHospital").value.toString();
-      var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
-      console.log(nom);
-      console.log(maximPacients);
-
-   
-      if (nom !== "" && maximPacients > 0) {
-            
-            var hospital = new Hospital(nom, maximPacients);
-
-            ocultaGestioHospital();
-            mostraGestioPacients(maximPacients);
-
-       
+      if (document.getElementById("inputNomHospital").value!=undefined && document.getElementById("inputNomHospital").value!="") {
+            var nom = document.getElementById("inputNomHospital").value;
+            var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
+            console.log(nom);
+            console.log(maximPacients);
+      
+         
+            if (nom !== "" && maximPacients > 0) {
+                  
+                  hospital = new Hospital(nom, maximPacients);
+      
+                  ocultaGestioHospital();
+                  mostraGestioPacients(maximPacients);      
+                  
+             
+            }
+      
+            document.getElementsByClassName('hospitalTitul')[0].innerHTML = "Hospital: "+hospital.nomHospital;
+      }else{
+            msgError('Posa un nom d\'hospital!');
       }
+
 } 
 
 function ingressarPacients() {
-
-      var formularu = ["nomPacient", "Cognompacient", "NIF"];
-      for (let camp = 0; camp < formularu.length; camp++) {
+      var dadesPacientArray = [];
+      var buit = false;
+      var formularu = ["nomPacient", "Cognompacient", "NIF", "malaltia"];
+  from:{    for (let camp = 0; camp < formularu.length; camp++) {
             
-            var index = 0;
-            var dadesPacientArray = [];
-            while(document.getElementById(formularu[camp]+(index))){
-                  dadesPacientArray[formularu[camp]+(index)]=document.getElementById(formularu[camp]+(index)).value;
-                  document.getElementById(formularu[camp]+(index)).value="";
-                  //comprovacions
-                  console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index++)]);
+            var index = -1;
+            while(document.getElementById(formularu[camp]+(++index))){
+                  if(document.getElementById(formularu[camp]+(index)).value=="" ||document.getElementById(formularu[camp]+(index)).value==undefined || document.getElementById(formularu[camp]+(index)).value=="capMalaltia"){  
+                        buit=true;
+                        msgError("No pots deixar camps en banc!");
+                        break from;                       
+                  }else{
+                        dadesPacientArray[formularu[camp]+(index)]=document.getElementById(formularu[camp]+(index)).value;
+                        
+                        //comprovacions
+                        console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index)]);
+                        
+
+
+                  }
+            
             }
 
       }
 
-      alert("Pacients ingressats correctament!");
+}
       
 
+      if(!buit){alert("Pacients ingressats correctament!");
+      crearPacients(dadesPacientArray);
+      }       
+
+}
+
+function crearPacients(PacientsPendentsDIngressar) {
+
+      var index=0;
+
+
+
+      while(PacientsPendentsDIngressar["nomPacient"+(index)]){
+            
+            Pacientsingressats[index] = new Pacient(PacientsPendentsDIngressar["nomPacient"+(index)], PacientsPendentsDIngressar["Cognompacient"+(index)], PacientsPendentsDIngressar["NIF"+(index)], llistaMalalties[PacientsPendentsDIngressar["malaltia"+(index)]]);
+
+            // console.log('->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+            
+            // console.log("nom obj: "+PacientsPendentsDIngressar["nomPacient"+(index)]);
+            // console.log("Cognompacient obj: "+PacientsPendentsDIngressar["Cognompacient"+(index)]);
+            // console.log("NIF obj: "+PacientsPendentsDIngressar["NIF"+(index)]);
+            // console.log("malaltia obj: "+llistaMalalties[PacientsPendentsDIngressar["malaltia"+(index)]]);
+            
+
+            hospital.ingressarPacient(Pacientsingressats[index]);
+
+            
+            
+            
+            index++;
+      }
+
+      // var test = new Pacient('nomRebut', 'cognomRebut', 'nifRebut', 'malaltiaRebuda');
+      // console.log('testOBJ');
+      
+      // console.log(Pacientsingressats[0].nom);      
+      // console.log(Pacientsingressats[0].cognom);
+      // console.log(Pacientsingressats[0].nif)   ;    
+      // console.log(Pacientsingressats[0].malaltia);
+
+      document.getElementById("divPacient").innerHTML =  '<h2 class="text-center">Pacients en tractament:</h2>'+
+      '<div class="text-center">';
+      hospital.MostrarIngressats();
+      document.getElementById("divPacient").innerHTML += '<div class="text-center"><a class="btn btn-primary mt-4" href="index.html">Torna a crear hospital</a></div>';
+      
+      
 }
