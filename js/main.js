@@ -231,7 +231,7 @@ function mostraGestioPacients(num){
                     '<label for="nomMalaltiaPacient'+(index)+'" class="font-weight-bold">'+
                         'NIF de pacient:'+
                     '</label>'+
-                    '<input type="text" title="Entra el NIF del pacient!" name="NIF pacient:" onblur="validaQueNoEsBuit(this)" placeholder="NIF pacient" id="NIF'+(index)+'" class="form-control" required="">'+
+                    '<input type="text" title="Entra el NIF del pacient!" name="NIF pacient:" maxlength="9" onblur="validaQueNoEsBuit(this)" placeholder="NIF pacient" id="NIF'+(index)+'" class="form-control" required="">'+
             
             '</div>'+
             '<div class="col mb-3">'+
