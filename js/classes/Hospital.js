@@ -14,13 +14,18 @@ class Hospital {
     }
 
     donarDaltaPacient(llitPacient) {
-      alert("S'ha donat d'alta el pacient " + this.pacientsIngressats[llitPacient].nomHospital + " de la malaltia " + this.pacientsIngressats[llitPacient].malaltia);
+      alert("S'ha donat d'alta el pacient " + this.pacientsIngressats[llitPacient].nom + " de la malaltia " + this.pacientsIngressats[llitPacient].malaltia);
       this.pacientsIngressats[llitPacient] = {};
+
+      document.getElementById(llitPacient).style.display = "none";
+
     }
 
     morirPacient(llitPacient) {
       alert("Encara que s'ha fet tot el que s'ha pogut, el pacient " + this.pacientsIngressats[llitPacient].nomHospital + " ha mort de la malaltia " + this.pacientsIngressats[llitPacient].malaltia);
       this.pacientsIngressats[llitPacient] = {};
+
+      document.getElementById(llitPacient).style.display = "none";
     }
 
     MostrarIngressats(){
@@ -28,20 +33,21 @@ class Hospital {
 
       for (let index = 0; index < Pacientsingressats.length; index++) {
         Continguttaula+=
-        '    <tr>'+
+
+        '    <tr id="'+(index)+'">'+
         '      <th scope="row">'+Pacientsingressats[index].nom+'</th>'+
         '      <td>'+Pacientsingressats[index].cognom+'</td>'+
         '      <td>'+Pacientsingressats[index].nif+'</td>'+
         '      <td>'+Pacientsingressats[index].malaltia+'</td>'+
-        '      <td><button type="button" class="btn btn-success" onclick="donarDaltaPacient(Pacientsingressats[index]);">donarDaltaPacient</button></td>'+
-        '      <td><button type="button" class="btn btn-danger" onclick="morirPacient(Pacientsingressats[index]);">morirPacient</button></td>'+
+        '      <td><button type="button" class="btn btn-success" onclick="hospital.donarDaltaPacient('+(index)+'); ">donarDaltaPacient</button></td>'+
+        '      <td><button type="button" class="btn btn-danger" onclick="hospital.morirPacient('+(index)+'); ">morirPacient</button></td>'+
 
 
         '    </tr>';
       }
 
    
-      document.getElementById("divPacient").innerHTML = 
+      document.getElementById("divPacient").innerHTML += 
     '<table class="table">'+
     '<thead class="thead-dark">'+
     '  <tr>'+

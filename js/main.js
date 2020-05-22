@@ -283,31 +283,31 @@ function crearHospital() {// s'ha ha de crar l'hospital....
             hospital = new Hospital(nom, maximPacients);
 
             ocultaGestioHospital();
-            mostraGestioPacients(maximPacients);
-
-         
+            mostraGestioPacients(maximPacients);      
             
        
       }
+
+      document.getElementsByClassName('hospitalTitul')[0].innerHTML = "Hospital: "+hospital.nomHospital;
 } 
 
 function ingressarPacients() {
       var dadesPacientArray = [];
       var buit = false;
       var formularu = ["nomPacient", "Cognompacient", "NIF", "malaltia"];
-      for (let camp = 0; camp < formularu.length; camp++) {
+  from:{    for (let camp = 0; camp < formularu.length; camp++) {
             
-            var index = 0;
-            while(document.getElementById(formularu[camp]+(index))){
-                  if(document.getElementById(formularu[camp]+(index)).value==""){  
+            var index = -1;
+            while(document.getElementById(formularu[camp]+(++index))){
+                  if(document.getElementById(formularu[camp]+(index)).value=="" ||document.getElementById(formularu[camp]+(index)).value==undefined || document.getElementById(formularu[camp]+(index)).value=="capMalaltia"){  
                         buit=true;
                         msgError("No pots deixar camps en banc!");
-                        break;                       
+                        break from;                       
                   }else{
                         dadesPacientArray[formularu[camp]+(index)]=document.getElementById(formularu[camp]+(index)).value;
-                        document.getElementById(formularu[camp]+(index)).value="";
+                        
                         //comprovacions
-                        console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index++)]);
+                        console.log(formularu[camp]+": "+dadesPacientArray[formularu[camp]+(index)]);
                         
 
 
@@ -316,6 +316,8 @@ function ingressarPacients() {
             }
 
       }
+
+}
       
 
       if(!buit){alert("Pacients ingressats correctament!");
@@ -358,7 +360,9 @@ function crearPacients(PacientsPendentsDIngressar) {
       // console.log(Pacientsingressats[0].nif)   ;    
       // console.log(Pacientsingressats[0].malaltia);
 
+      document.getElementById("divPacient").innerHTML +=  '<h2 class="text-center">Pacients en tractament:</h2>';
       hospital.MostrarIngressats();
+
       
       
 }
