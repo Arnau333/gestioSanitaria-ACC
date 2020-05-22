@@ -53,6 +53,11 @@ BTNblock=$(this).css('font-size');
 $(this).css('font-size', parseInt(BTNblock)*1.5+"px");
 });
 
+$("table").each(function( index ) {
+table=$(this).css('font-size');
+$(this).css('font-size', parseInt(table)*1.5+"px");
+});
+
 
 $("label").each(function( index ) {
 textamanyLlabel=$(this).css('font-size');
@@ -109,6 +114,11 @@ $(this).css('font-size', parseInt(textamanyP)*1.5+"px");
 
 }
 function textamanyDisminuir() {
+
+$("table").each(function( index ) {
+table=$(this).css('font-size');
+$(this).css('font-size', parseInt(table)/1.5+"px");
+});
 
 $(".btn-block").each(function( index ) {
 BTNblock=$(this).css('font-size');
