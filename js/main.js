@@ -42,22 +42,22 @@ taula_missatges[3][intTitol]="Camp buit"
 taula_missatges[3][intMissatge]="Ho sento, encara no està habilitat!"
  */
 
-const taula_missatges=[[]];
+// const taula_missatges=[[]];
 
-const intTitol = 1
-const intMissatge = 2;
+// const intTitol = 1
+// const intMissatge = 2;
 
-taula_missatges[0]=[];
-taula_missatges[0][intTitol]="No habilitat";
-taula_missatges[0][intMissatge]="Ho sento, encara no està habilitat!";
+// taula_missatges[0]=[];
+// taula_missatges[0][intTitol]="No habilitat";
+// taula_missatges[0][intMissatge]="Ho sento, encara no està habilitat!";
 
-taula_missatges[1]=[];
-taula_missatges[1][intTitol]="El camp màxim pacients és obligatori!";
-taula_missatges[1][intMissatge]="Cal que entris un nombre al camp màxim pacients!";
+// taula_missatges[1]=[];
+// taula_missatges[1][intTitol]="El camp màxim pacients és obligatori!";
+// taula_missatges[1][intMissatge]="Cal que entris un nombre al camp màxim pacients!";
 
-taula_missatges[2]=[];
-taula_missatges[2][intTitol]="El camp Nom Hospital és obligatori!";
-taula_missatges[2][intMissatge]="Cal que entris un nom al camp Hospital!";
+// taula_missatges[2]=[];
+// taula_missatges[2][intTitol]="El camp Nom Hospital és obligatori!";
+// taula_missatges[2][intMissatge]="Cal que entris un nom al camp Hospital!";
 
 //    let metge = new Metge('Ivan', 'Soriano', '12345678A', 'Oncologia');
 //     alert(JSON.stringify(metge));
@@ -79,12 +79,9 @@ function mostraMissatge(codiMissatge) {//peta...
 }
 
 function msgError(msg) {
-      document.getElementById("errors").innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'+
-      '<strong>Error!</strong>&nbsp;'+msg+
-      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-      '<span aria-hidden="true">&times;</span>'+
-      '</button>'+
-      '</div>';
+
+      $('#divEspaiModal').find('#missatgeModal').text(msg);
+      $('#divEspaiModal').modal('show');
 }
 
 function mostraBotons() {
@@ -253,8 +250,8 @@ function mostraGestioPacients(num){
             }
 
       }
-      document.getElementById('dadesPacient').innerHTML =  htmlP;
-      // document.getElementById('test').innerHTML =  htmlP;
+      document.getElementById('dadesPacient').innerHTML =  htmlP?htmlP:"";
+
 
 }
 
@@ -289,7 +286,7 @@ function crearHospital() {// s'ha ha de crar l'hospital....
              
             }
       
-            document.getElementsByClassName('hospitalTitul')[0].innerHTML = "Hospital: "+hospital.nomHospital;
+            document.getElementsByClassName('hospitalTitul')[0].innerHTML = hospital.nomHospital;
       }else{
             msgError('Posa un nom d\'hospital!');
       }
@@ -365,7 +362,7 @@ function crearPacients(PacientsPendentsDIngressar) {
       // console.log(Pacientsingressats[0].nif)   ;    
       // console.log(Pacientsingressats[0].malaltia);
 
-      document.getElementById("divPacient").innerHTML =  '<h2 class="text-center">Pacients en tractament:</h2>'+
+      document.getElementById("divPacient").innerHTML =  '<a href="index.html" class="close"><h3>×</h3></a><h2 class="text-center">Pacients en tractament:</h2>'+
       '<div class="text-center">';
       hospital.MostrarIngressats();
       document.getElementById("divPacient").innerHTML += '<div class="text-center"><a class="btn btn-primary mt-4" href="index.html">Torna a crear hospital</a></div>';

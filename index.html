@@ -43,7 +43,7 @@
           <div class="modal-content">
             <!-- INICI Modal capçalera -->
             <div class="modal-header">
-              <h4 class="modal-title" id="titolModal">Modal Heading</h4>
+              <h4 class="modal-title" id="titolModal">Error!</h4>
               <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- FINAL Modal capçalera -->
@@ -79,8 +79,8 @@
               <!-- FINAL eleID_h4TitolPanell -->
             <button type="button" id="btnGestHospitals" class="btn btn-primary btn-block" onClick="mostraGestioHospital(this)">Hospital</button>
             <button type="button" id="btnGestPacients" class="btn btn-primary btn-block"  onClick="mostraGestioPacients(this)">Pacients</button>
-            <button type="button" id="btnGestMalalties" class="btn btn-primary btn-block"  onClick="mostraGestioMalaties(this)">Malalties</button>
-            <button type="button" id="btnGestMetges" class="btn btn-primary btn-block"  onClick="mostraGestioMetges()">Metges</button>
+            <button type="button" id="btnGestMalalties" class="btn btn-primary btn-block"  onClick="mostraGestioPacients(this)">Malalties</button>
+            <button type="button" id="btnGestMetges" class="btn btn-primary btn-block"  onClick="msgError('Aquest apartat encara no ha estat desenvolupat!')">Metges</button>
             <br>
             <button type="button" id="btnGestAplicacio" class="btn btn-primary btn-block"  onClick="mostraGestioApp()">Control</button>
             <!-- <button type="button" class="btn btn-primary  btn-block" data-toggle="modal" data-target="#espaiModal">Open modal</button> -->
@@ -139,12 +139,12 @@
           <!-- INICI divPacients -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divPacient">
              <!-- w-100  = width: 100% -->
+             <a href="index.html" class="close"><h3>×</h3></a>
             <h2 class="text-center">Pacients</h2>
             <p class="text-center">Introdueix les dades del pacients que vols ingressar:</p>
             <div id="dadesPacient"></div>
             <div class="text-center">
               <button type="button" class="btn btn-primary mt-4" onClick="ingressarPacients()">Ingressar</button>
-              <button type="button" class="btn btn-primary mt-4" onClick="ocultaGestioPacients(this)">Torna</button>
             </div>
           </div>
           <!-- FINAL divPacients -->

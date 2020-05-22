@@ -33,7 +33,7 @@ class Hospital {
     }
 
     MostrarIngressats(){
-      var Continguttaula="";
+      var Continguttaula='';
 
       for (let index = 0; index < Pacientsingressats.length; index++) {
         Continguttaula+=
