@@ -269,7 +269,7 @@ function ocultaGestioPacients(objecteRebut){
    
 function crearHospital() {// s'ha ha de crar l'hospital....
       // alert('aaa');
-      if (document.getElementById("inputNomHospital").value!=undefined && document.getElementById("inputNomHospital").value!="") {
+      if (document.getElementById("inputNomHospital").value!=undefined && document.getElementById("inputNomHospital").value!="" && document.getElementById("maximPacientsHospital").value!="" && document.getElementById("maximPacientsHospital").value!="0") {
             var nom = document.getElementById("inputNomHospital").value;
             var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
             console.log(nom);
@@ -288,7 +288,7 @@ function crearHospital() {// s'ha ha de crar l'hospital....
       
             document.getElementsByClassName('hospitalTitul')[0].innerHTML = hospital.nomHospital;
       }else{
-            msgError('Posa un nom d\'hospital!');
+            msgError('Posa un nom d\'hospital i un número més gran que 0 de pacients màxims!');
       }
 
 } 
