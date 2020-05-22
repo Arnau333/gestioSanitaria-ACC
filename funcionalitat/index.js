@@ -190,12 +190,6 @@ if (primerCanviar){
     $('#divHospital').removeClass("bg-white").addClass("bg-dark");
     $('#divPacient').removeClass("bg-white").addClass("bg-dark");
 
-
-
-
-
-    $('.text-white')
-
     $('.btnCrearp').removeClass("text-muted").addClass("text-white");
 
     $('.btnIngressarp').removeClass("text-muted").addClass("text-white");
