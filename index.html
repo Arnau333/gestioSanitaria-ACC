@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ca" dir="ltr">
   <head>
@@ -28,6 +29,7 @@
    
   </head>
   <body>
+
     <!-- INICI container -->
 
 
@@ -45,7 +47,6 @@
   </div>
 </nav>
 
-<!-- Modal -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
@@ -77,8 +78,12 @@
 </div>
 
     <div class="container">
+
       <h1  class="text-center mt-3 mb-3" >Aplicació gestió Sanitària</h1>
+      <h2 class="text-center hospitalTitul"></h2>
       <!-- ==================================================================================== -->  
+      <!-- ERRORS -->
+      <div id="errors"></div>
       <!-- INICI Missatge Modal -->
       <div class="modal fade" id="divEspaiModal">
         <!-- https://getbootstrap.com/docs/4.0/components/modal/ -->
@@ -86,7 +91,7 @@
           <div class="modal-content">
             <!-- INICI Modal capçalera -->
             <div class="modal-header">
-              <h4 class="modal-title" id="titolModal">Modal Heading</h4>
+              <h4 class="modal-title" id="titolModal">Error!</h4>
               <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- FINAL Modal capçalera -->
@@ -97,7 +102,7 @@
             <!-- FINAL Modal part central -->
             <!-- INICI Modal peu de pàgina -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Tancar</button>
             </div>
             <!-- FINAL Modal peu de pàgina -->
           </div>
@@ -122,8 +127,8 @@
               <!-- FINAL eleID_h4TitolPanell -->
             <button type="button" id="btnGestHospitals" class="btn btn-primary btn-block" onClick="mostraGestioHospital(this)">Hospital</button>
             <button type="button" id="btnGestPacients" class="btn btn-primary btn-block"  onClick="mostraGestioPacients(this)">Pacients</button>
-            <button type="button" id="btnGestMalalties" class="btn btn-primary btn-block"  onClick="mostraGestioMalaties(this)">Malalties</button>
-            <button type="button" id="btnGestMetges" class="btn btn-primary btn-block"  onClick="mostraGestioMetges()">Metges</button>
+            <button type="button" id="btnGestMalalties" class="btn btn-primary btn-block"  onClick="mostraGestioPacients(this)">Malalties</button>
+            <button type="button" id="btnGestMetges" class="btn btn-primary btn-block"  onClick="msgError('Aquest apartat encara no ha estat desenvolupat!')">Metges</button>
             <br>
             <button type="button" id="btnGestAplicacio" class="btn btn-primary btn-block"  onClick="mostraGestioApp()">Control</button>
             <!-- <button type="button" class="btn btn-primary  btn-block" data-toggle="modal" data-target="#espaiModal">Open modal</button> -->
@@ -172,8 +177,8 @@
             <!-- INICI botonsIntroHospital -->
             <div class="text-center" id="botonsIntroHospital">
               <hr style="border: 1px solid green; border-radius: 10px;">
-              <button type="button" class="btn btn-primary mt-4" onClick="crearHospital()">Crear</button>
-              <!-- <button type="button" class="btn btn-primary mt-4" onClick="ocultaGestioHospital(this)">Torna</button> -->
+              <button type="button" class="btn btn-success mt-4" onClick="crearHospital()">Crear</button>
+              <!-- <button type="button" class="btn btn-success mt-4" onClick="ocultaGestioHospital(this)">Torna</button> -->
             </div>
             <!-- FINAL botonsIntroHospital -->
           </div>
@@ -182,18 +187,18 @@
           <!-- INICI divPacients -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divPacient">
              <!-- w-100  = width: 100% -->
+             <a href="index.html" class="close"><h3>×</h3></a>
             <h2 class="text-center">Pacients</h2>
             <p class="text-center">Introdueix les dades del pacients que vols ingressar:</p>
             <div id="dadesPacient"></div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4" onClick="ingressarPacients()">Ingressar</button>
-              <button type="button" class="btn btn-primary mt-4" onClick="ocultaGestioPacients(this)">Torna</button>
+              <button type="button" class="btn btn-success mt-4" onClick="ingressarPacients()">Ingressar</button>
             </div>
           </div>
           <!-- FINAL divPacients -->
           <!-- ------------------------------------------------------------------------------------ -->
           <!-- INICI divTractament -->
-          <div class="w-100 mx-auto align-items-center border border-primary p-4 rounded shadow bg-white d-none" id="divTractament">
+          <div class="w-100 mx-auto align-items-center border border-success p-4 rounded shadow bg-white d-none" id="divTractament">
             <!-- <h2 class="text-center">Hospital: <span id="nomHospitalGestio"></span></h2> -->
             <h2 class="text-center">Pacients en tractament:</h2>
             <!-- <p class="text-center">Pacients en tractament:</p> -->
@@ -207,9 +212,9 @@
             <h4  class="text-center mt-3 mb-3" >Control de l'aplicació</h4>
             <div class="form-row" id="formControls">
               <div class="text-center">
-                <button type="button" class="btn btn-primary mt-4" onClick="comprovacioInicial()" id="btnCheck">Check</button>
-                <button type="button" class="btn btn-primary mt-4" onClick="mostraNotFoud()" id="btnMostra404">Mostra error 404</button>
-                <button type="button" class="btn btn-primary mt-4" onClick="ocultaControls(this)">Torna</button>
+                <button type="button" class="btn btn-success mt-4" onClick="comprovacioInicial()" id="btnCheck">Check</button>
+                <button type="button" class="btn btn-success mt-4" onClick="mostraNotFoud()" id="btnMostra404">Mostra error 404</button>
+                <button type="button" class="btn btn-success mt-4" onClick="ocultaControls(this)">Torna</button>
               </div>
             </div>
             <div class="form-row" id="formControls">
