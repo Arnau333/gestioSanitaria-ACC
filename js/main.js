@@ -272,23 +272,28 @@ function ocultaGestioPacients(objecteRebut){
    
 function crearHospital() {// s'ha ha de crar l'hospital....
       // alert('aaa');
-      var nom = document.getElementById("inputNomHospital").value.toString();
-      var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
-      console.log(nom);
-      console.log(maximPacients);
-
-   
-      if (nom !== "" && maximPacients > 0) {
-            
-            hospital = new Hospital(nom, maximPacients);
-
-            ocultaGestioHospital();
-            mostraGestioPacients(maximPacients);      
-            
-       
+      if (document.getElementById("inputNomHospital").value!=undefined && document.getElementById("inputNomHospital").value!="") {
+            var nom = document.getElementById("inputNomHospital").value;
+            var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
+            console.log(nom);
+            console.log(maximPacients);
+      
+         
+            if (nom !== "" && maximPacients > 0) {
+                  
+                  hospital = new Hospital(nom, maximPacients);
+      
+                  ocultaGestioHospital();
+                  mostraGestioPacients(maximPacients);      
+                  
+             
+            }
+      
+            document.getElementsByClassName('hospitalTitul')[0].innerHTML = "Hospital: "+hospital.nomHospital;
+      }else{
+            msgError('Posa un nom d\'hospital!');
       }
 
-      document.getElementsByClassName('hospitalTitul')[0].innerHTML = "Hospital: "+hospital.nomHospital;
 } 
 
 function ingressarPacients() {
