@@ -26,6 +26,10 @@ class Hospital {
       this.pacientsIngressats[llitPacient] = {};
 
       document.getElementById(llitPacient).style.display = "none";
+      //test
+      // console.log(this.pacientsIngressats[llitPacient]?"eliminat":"encara no");      
+      //test
+
     }
 
     MostrarIngressats(){

@@ -360,9 +360,10 @@ function crearPacients(PacientsPendentsDIngressar) {
       // console.log(Pacientsingressats[0].nif)   ;    
       // console.log(Pacientsingressats[0].malaltia);
 
-      document.getElementById("divPacient").innerHTML +=  '<h2 class="text-center">Pacients en tractament:</h2>';
+      document.getElementById("divPacient").innerHTML =  '<h2 class="text-center">Pacients en tractament:</h2>'+
+      '<div class="text-center">';
       hospital.MostrarIngressats();
-
+      document.getElementById("divPacient").innerHTML += '<div class="text-center"><a class="btn btn-primary mt-4" href="index.html">Torna a crear hospital</a></div>';
       
       
 }
